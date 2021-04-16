@@ -1,0 +1,41 @@
+Sql server logon
+User = sa
+Password = root
+
+conf banco de dados
+app sql server configuration - configuração de rede do sql server - protocolos para sql server - TCP/IP - Habilitar
+No arquivo .env do projeto backend, colocar as configurações do banco de dados
+
+
+Banco de dados SQL Server - Turismo
+
+CREATE TABLE estados (
+	id INT NOT NULL PRIMARY KEY IDENTITY,
+	uf CHAR(2) NOT NULL,
+	nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE pontos_tur (
+	id INT NOT NULL PRIMARY KEY IDENTITY,
+	nome VARCHAR(100) NOT NULL,
+	endereco VARCHAR(200) NOT NULL,
+	cidade VARCHAR(100) NOT NULL,
+	estado INT NOT NULL,
+	FOREIGN KEY(estado) REFERENCES estados(id)
+	);
+
+ALTER TABLE pontos_tur ADD data DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+CREATE PROCEDURE sp_listar_pontos
+AS 
+BEGIN
+	SELECT p.nome, p.endereco, p.cidade, e.uf, e.nome FROM pontos_tur AS p
+	INNER JOIN estados AS e
+	ON p.estado = e.id
+	ORDER BY p.data desc
+END
+
+backend em nodejs
+comando para iniciar em dev npm run startdev
+comando para iniciar ??
+porta 3001
