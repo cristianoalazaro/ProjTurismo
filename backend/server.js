@@ -7,9 +7,22 @@ dotenv.config();
 
 import routes from './src/routes.js';
 
+const config = {
+    user: process.env.DBUSER,
+    password: process.env.DBPASS,
+    server: process.env.DBHOST,
+    database: process.env.DBDATABASE,
+    port: parseInt(process.env.DBPORT),
+    "options":{
+        "trustedConnection": true,
+        "encrypt": true,
+        "enableArithAbort": true 
+    },
+}
+
 async function connect (){
     try{
-        await sql.connect(`mssql://${process.env.DBUSER}:${process.env.DBPASS}@${process.env.DBHOST}:${process.env.DBPORT}/${process.env.DBDATABASE}`);  
+        await sql.connect(config);
         console.log('Conectado com sucesso ao SQL Server!');
     } catch(error){
         console.log(`Erro ao conectar ao SQL Server. Erro: ${error}`);

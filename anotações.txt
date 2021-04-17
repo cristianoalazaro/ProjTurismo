@@ -36,6 +36,7 @@ BEGIN
 END
 
 backend em nodejs
+Para instalar as dependências - npm install
 comando para iniciar em dev npm run startdev
 comando para iniciar ??
 porta 3001
