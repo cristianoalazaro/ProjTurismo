@@ -1,22 +1,34 @@
-import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
-import styled from 'styled-components';
+import React ,{useState, useEffect} from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import Logo from './Components/Logo';
-
-const Title = styled.h1`
-  text-align: center;
-  font-size: 50px;
-  color: red;
-`;
+import Routes from './routes';
+import axios from './services/axios';
+import './styles/style.css';
 
 function App() {
+  const [states, setStates] = useState(null);
+  const [points, setPoints] = useState(null);
+
+  useEffect(()=>{
+      const getStates = async ()=>{
+          const fetchData = await axios.get('/uf');
+          setStates(fetchData.data[0]);
+      }
+      getStates();
+  }, []);
+
+  useEffect(()=>{
+    const getPoints = async ()=>{
+        const fetchData = await axios.get('/list');
+        setPoints(fetchData.data[0]);
+    }
+    getPoints();
+}, []);
+
   return (
-    <div className="App">
+    <div className="container">
       <BrowserRouter>
-        <Title>PONTOS TURÍSTICOS</Title>
-        <hr />
-        <Logo />
+        <Routes />
       </BrowserRouter>
     </div>
   );
