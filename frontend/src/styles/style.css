@@ -67,6 +67,9 @@
 .city{
     width: 200px;
 }
+.address{
+    width: 285px;
+}
 .description{
     margin-top: 10px;
     width: 370px;
