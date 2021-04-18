@@ -53,21 +53,21 @@ export default function Home() {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
-        <>
+        <div className='container'>
             <h1 className='title'>PROJTUR</h1>
             <div className='header'>
                 <img src='images/cachoeiras.jpg' alt='ProjTur' width='200' align='left' />
-                <Link to='/points/new' ><button className='btncad'>
+                <Link to='/points/new' ><button className='btncad btn btn-secondary'>
                     Cadastrar um ponto turístico</button></Link>
             </div>
             <div className='bodyfind'>
-                <input type='text' name='inputfind' className='inputfind'
+                <input type='text' name='inputfind form-control' className='inputfind'
                     placeholder='Digite um termo para buscar um ponto turístico...' />
-                <button className='btnfind' onClick={handleFind}>Buscar</button>
+                <button className='btnfind btn btn-primary' onClick={handleFind}>Buscar</button>
             </div>
 
             <Points points={currentPoints} loading={loading} />
             <Pagination pointsPerPage={pointsPerPage} totalPoints={filteredPoints.length} paginate={paginate} />
-        </>
+        </div>
     )
 }

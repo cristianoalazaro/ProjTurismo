@@ -34,7 +34,7 @@ export default function NewPoint() {
     }, []);
 
     return (
-        <>
+        <div className='container'>
             <h1 className='title'>PROJTUR</h1>
             <div className='header'>
                 <img src='../images/cachoeiras.jpg' alt='ProjTur' width='200' align='left' />
@@ -70,11 +70,11 @@ export default function NewPoint() {
                             maxLength='100' required />
                     </label>
                     <div>
-                        <Link to='/'><button className='btnform'>Voltar</button></Link>
-                        <button type='submit' className='btnform2'>Cadastrar</button>
+                        <Link to='/'><button className='btnform btn btn-secondary'>Voltar</button></Link>
+                        <button type='submit' className='btnform2 btn btn-primary'>Cadastrar</button>
                     </div>
                 </form>
             </div>
-        </>
+        </div>
     )
 }

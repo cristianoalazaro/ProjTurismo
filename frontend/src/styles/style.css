@@ -24,7 +24,7 @@
 
 .btncad {
   align-items: right;
-  width: 250px;
+  width: 200px;
   height: 50px;
   border-radius: 5px;
 }
@@ -86,3 +86,6 @@
     margin-left: 170px;
 }
 
+.listPoints{
+    margin-top: 10px;
+}
