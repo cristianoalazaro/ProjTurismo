@@ -5,7 +5,11 @@ import Ponto_tour from '../Model/Ponto_tur.js';
 //lista pontos turísticos
 const list = async (req, res) => {
     try {
-        const result = await sql.query(`SELECT * FROM pontos_tur ORDER BY data DESC`);
+        const result = await sql.query(`SELECT p.id, p.nome, p.endereco, p.cidade, e.uf, 
+        p.descricao FROM pontos_tur p
+        INNER JOIN estados e 
+        ON p.estado = e.id
+        ORDER BY data DESC`);
         res.json(result.recordsets);
     } catch (error) {
         res.json(`Dados indisponíveis. Erro: ${error}`);

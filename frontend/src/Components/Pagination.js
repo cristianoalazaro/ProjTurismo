@@ -1,16 +1,24 @@
-import React from 'react';
+import React from 'react'
+import {Link} from 'react-router-dom';
 
-export default function Pagination(props){
-    const {totalRecords = null, pageLimit= 30, pageNeighbours = 0} = props;
+export default function Pagination({pointsPerPage, totalPoints, paginate}) {
+    const pageNumbers = [];
 
-    pageLimit = typeof pageLimit === 'number' ? pageLimit: 30;
-    totalRecords = typeof totalRecords === 'number' ? totalRecords: 0;
+    for(let i = 1; i <= Math.ceil(totalPoints / pointsPerPage); i++){
+        pageNumbers.push(i);
+    }
 
-    pageNeighbours = typeof pageNeighbours === 'number' 
-    ? Math.max(0, Math.min(pageNeighbours, 2))
-    : 0;
-
-    let totalPages = Math.ceil(totalRecords / pageLimit);
-    let state = {currentPage: 1};
+    return (
+        <nav>
+            <ul className='pagination'>
+                {pageNumbers.map(number=>(
+                    <li key={number} className='page-item'>
+                        <Link onClick={()=> paginate(number)} to='' className='page-link'>
+                            {number}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    )
 }
-

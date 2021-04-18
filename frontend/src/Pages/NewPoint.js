@@ -7,14 +7,22 @@ import '../styles/style.css';
 export default function NewPoint() {
     const [states, setStates] = useState([]);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const name = document.querySelector('.name').value;
-        const address = document.querySelector('.address').value;
-        const city = document.querySelector('.city').value;
-        const state = document.querySelector('.state').value
-        const description = document.querySelector('.description').value;
-        alert(name+ address+ city+state+ description);
+        const nome = document.querySelector('.name').value;
+        const endereco = document.querySelector('.address').value;
+        const cidade = document.querySelector('.city').value;
+        const estado = document.querySelector('.state').value
+        const descricao = document.querySelector('.description').value;
+
+        if (nome && endereco && cidade && estado && descricao){
+            try{
+                await axios.post('/new',{nome, endereco, cidade, estado, descricao});
+                alert('Ponto turístico cadastrao com sucesso!');
+            }catch(error){
+                alert(`Erro ao cadastrar ponto turístico. Erro: ${error}`);
+            }
+        }
     }
 
     useEffect(() => {
