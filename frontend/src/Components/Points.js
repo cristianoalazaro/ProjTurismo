@@ -25,6 +25,7 @@ export default function Pagination({ points, loading }) {
                     Ver detalhes
                 </button>
                 <br />
+                <small>{point.endereco}</small>
                 <small className={`${point.id}-text`} id={`${point.id}`} style={{ display: 'none' }}>{point.descricao}</small>
             </li>
         ))}
